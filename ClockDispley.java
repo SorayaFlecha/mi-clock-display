@@ -8,26 +8,69 @@
 public class ClockDispley
 {
     // instance variables - replace the example below with your own
-    private int x;
-
+    private int horas;
+    
+    private int minutos;
+    
+   
+    
+    
     /**
-     * Constructor for objects of class ClockDispley
-     */
-    public ClockDispley()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
+     * Metodo que nos devuelve en una cadena de caracteres la hor ay los minutos.
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    */
+   public void setTime(int hora, int minuto)
+   {    
+       if(hora<24 && minuto<60)
+       {
+           horas =  hora;
+           minutos = minuto;
+       }
+       
+   }
+   
+    /**
+     * Metodo que nos devuelve la hora y los minutos.
+     * 
+    */
+   public String getTime()
+   { 
+     String menor;        
+     if (horas > 10)
+     {
+          menor = "0" + horas;
+     }
+     else
+     {
+          menor = "" + horas;
+     }
+     if (minutos > 10)
+     {
+          menor = "0" + minutos;
+     }
+     else
+     {
+          menor = "" + minutos;
+     }
+     
+     return horas + ":" + minutos;
+   }
+   
+   /**
+     * Metodo que suma 1 a los minutos siempre y cuando no excedean de 60
+   */
+  
+   public void timeTick()
+   {    
+      if(minutos <= 58)
+       {
+           minutos =  minutos + 1;
+       }
+       else
+       {
+           minutos = 0;
+           
+       }
+   }
+    
 }

@@ -22,6 +22,7 @@ public class NumbreDisplay
         display = 0;
         
     }
+   
     
     /**
      * Metodo que devuelve el valor del display

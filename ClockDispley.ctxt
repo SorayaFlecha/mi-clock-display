@@ -1,8 +1,11 @@
 #BlueJ class context
-comment0.params=
-comment0.target=ClockDispley()
-comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ ClockDispley\r\n
-comment1.params=y
-comment1.target=int\ sampleMethod(int)
-comment1.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ \r\n\ @param\ \ y\ \ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ \ the\ sum\ of\ x\ and\ y\ \r\n
-numComments=2
+comment0.params=hora\ minuto
+comment0.target=void\ setTime(int,\ int)
+comment0.text=\r\n\ Metodo\ que\ nos\ devuelve\ en\ una\ cadena\ de\ caracteres\ la\ hor\ ay\ los\ minutos.\r\n\ \r\n
+comment1.params=
+comment1.target=java.lang.String\ getTime()
+comment1.text=\r\n\ Metodo\ que\ nos\ devuelve\ la\ hora\ y\ los\ minutos.\r\n\ \r\n
+comment2.params=
+comment2.target=void\ timeTick()
+comment2.text=\r\n\ Metodo\ que\ suma\ 1\ a\ los\ minutos\ siempre\ y\ cuando\ no\ excedean\ de\ 60\r\n
+numComments=3
