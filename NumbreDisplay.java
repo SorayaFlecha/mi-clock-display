@@ -58,5 +58,20 @@ public class NumbreDisplay
      return display;
     }
     
+    /**
+     * Metodo que incrementa el display en 1 y cuando llega al limite se pone a 0.
+     */
+    public void increment()
+    {
+        if(display < limite)
+        {
+            display = display + 1;
+        }
+        else
+        {
+            display = 0;
+        }
+    }
+    
     
 }
