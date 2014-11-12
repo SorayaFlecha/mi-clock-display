@@ -41,4 +41,22 @@ public class NumbreDisplay
         return display;
     }
     
+    /**
+     * Metodo que devuelve el valor actual del display en forma de 2 caracteres
+     */
+    public int getDisplayValue()
+    {
+     String menor;        
+     if (display > 10)
+     {
+            menor = "0" + display;
+     }
+     else
+     {
+            menor = "" + display;
+     }
+     return display;
+    }
+    
+    
 }
