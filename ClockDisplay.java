@@ -19,9 +19,9 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        horas = new NumbreDisplay(24);
-        minutos = new NumbreDisplay(60);
-
+        horas = new NumbreDisplay(23);
+        minutos = new NumbreDisplay(59);
+        almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
         
     }
     
@@ -30,30 +30,35 @@ public class ClockDisplay
      */
     public ClockDisplay( int newHoras, int newMinutos)
     {
-        horas = new NumbreDisplay(24);
-        minutos = new NumbreDisplay(60);
+        horas = new NumbreDisplay(23);
+        minutos = new NumbreDisplay(59);
         horas.setValue(newHoras);
         minutos.setValue(newMinutos);
-            
+          
         
                 
     }
     
-   
-            
-    public String setTime(int h, int m)
+    public void setTime(int hNew, int mNew)
     {
-        String menor;
-        if(h < 10 || m < 10)
-        {
-            menor = "0" + h + ":" + "0" + m;
-        }
-        else
-        {
-            menor = "" + h + ":" + "" + m;
-        }
-        return menor;
+        horas = new NumbreDisplay (hNew);
+        minutos = new NumbreDisplay (mNew);
+        
     }
     
-}
+    public String getTime()
+    {
+       almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
+       return almacen5c;
+    }
+
+    public void timeTick()
+    {
+        minutos. increment();
+    }
+
+}         
+   
+    
+
    

@@ -55,7 +55,7 @@ public class NumbreDisplay
      */
     public String getDisplayValue()
     {
-        if (value > 10)
+        if (value < 10)
              {
                     return "0" + value;
              }
