@@ -15,16 +15,39 @@ public class ClockDispley
    
     
     
+   /**
+     * Metodo que nos devuelve en una cadena de caracteres la hor ay los minutos.
+     * 
+    */
+   //public  ClockDispley()
+   //{    
+       // horas =  0;
+        //minutos = 0;
+   //}
+    
+    
     /**
      * Metodo que nos devuelve en una cadena de caracteres la hor ay los minutos.
      * 
     */
    public void setTime(int hora, int minuto)
    {    
-       if(hora<24 && minuto<60)
+       if(hora < 24 && hora >= 0)
        {
            horas =  hora;
+       }
+       else
+       {
+           System.out.println("Hora debe ser menor a 24");
+       }
+        
+       if(minuto < 60 && minuto >= 0)
+       {
            minutos = minuto;
+       }
+       else
+       {
+           System.out.println("Los minutos deben ser menor a 60");
        }
        
    }
@@ -35,8 +58,8 @@ public class ClockDispley
     */
    public String getTime()
    { 
-     String menor;        
-     if (horas > 10)
+     String menor = "";        
+     if (horas < 10)
      {
           menor = "0" + horas;
      }
@@ -44,16 +67,19 @@ public class ClockDispley
      {
           menor = "" + horas;
      }
-     if (minutos > 10)
+     
+     menor = menor + ":";
+     
+     if (minutos < 10)
      {
-          menor = "0" + minutos;
+          menor = menor + "0" + minutos;
      }
      else
      {
-          menor = "" + minutos;
+          menor = menor + minutos;
      }
      
-     return horas + ":" + minutos;
+     return menor;
    }
    
    /**
@@ -62,14 +88,21 @@ public class ClockDispley
   
    public void timeTick()
    {    
-      if(minutos <= 58)
+      if(minutos < 59)
        {
            minutos =  minutos + 1;
        }
        else
        {
            minutos = 0;
-           
+           if(horas < 23)
+           {
+               horas = horas + 1;
+            }
+           else
+           {
+               horas = 0;
+           }    
        }
    }
     

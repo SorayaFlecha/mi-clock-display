@@ -8,30 +8,38 @@
 public class NumbreDisplay
 {
     // instance variables - replace the example below with your own
-    private int display;
+    private int value;
     
     private int limite;
 
     /**
      * Constructor for objects of class NumbreDisplay
      */
-    public NumbreDisplay(int limit)
+    public NumbreDisplay(int newLimit)
     {
         // initialise instance variables
-        limite = limit;
-        display = 0;
+        
+        limite = newLimit;
+        value = 0;
         
     }
    
     
     /**
-     * Metodo que devuelve el valor del display
+     * Metodo que devuelve el valor de value.
      */
     public void setValue(int valorLim)
     {
-        // put your code here
-        display = valorLim;
-    }
+       if(valorLim < limite && (valorLim >= 0))
+       {
+          value = valorLim; 
+       }
+       else
+       {
+           System.out.println("El valor no puede esceder del limite que es " + limite);
+       }
+    }// put your code her
+   
     
     /**
      * Metodo que devuelve el valor del display como entero.
@@ -39,24 +47,23 @@ public class NumbreDisplay
     public int getValue()
     {
         // put your code here
-        return display;
+        return value;
     }
     
     /**
      * Metodo que devuelve el valor actual del display en forma de 2 caracteres
      */
-    public int getDisplayValue()
+    public String getDisplayValue()
     {
-     String menor;        
-     if (display > 10)
-     {
-            menor = "0" + display;
-     }
-     else
-     {
-            menor = "" + display;
-     }
-     return display;
+        if (value > 10)
+             {
+                    return "0" + value;
+             }
+             else
+             {
+                    return "" + value;
+             }
+        
     }
     
     /**
@@ -64,13 +71,14 @@ public class NumbreDisplay
      */
     public void increment()
     {
-        if(display < limite)
+        //value = (value + 1) % limite; esto es igual k poner lo de abajo.
+        if(value < (limite - 1))
         {
-            display = display + 1;
+            value = value + 1;
         }
         else
         {
-            display = 0;
+            value = 0;
         }
     }
     
