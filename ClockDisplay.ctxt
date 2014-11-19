@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=
 comment0.target=ClockDisplay()
-comment0.text=\r\n\ Constructor.\r\n
+comment0.text=\r\n\ Constructor\ 1.\r\n
 comment1.params=newHoras\ newMinutos
 comment1.target=ClockDisplay(int,\ int)
 comment1.text=\r\n\ Constructor\ 2.\r\n
@@ -11,4 +11,6 @@ comment3.params=
 comment3.target=java.lang.String\ getTime()
 comment4.params=
 comment4.target=void\ timeTick()
-numComments=5
+comment5.params=
+comment5.target=void\ updateAlmacen5c()
+numComments=6

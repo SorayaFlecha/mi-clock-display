@@ -7,22 +7,21 @@
  */
 public class ClockDisplay
 {
-    // instance variables - replace the example below with your own
+    // Objeto NumbreDisplay que nos guarda las horas.
     private NumbreDisplay horas;
-    
+     // Objeto NumbreDisplay que nos guarda los minutos.
     private NumbreDisplay minutos;
-    
+     // Objetoque nos da las horas y los minuto separados por dos puntos.
     private String almacen5c;
     
     /**
-     * Constructor.
+     * Constructor 1.
      */
     public ClockDisplay()
     {
-        horas = new NumbreDisplay(23);
-        minutos = new NumbreDisplay(59);
-        almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
-        
+        horas = new NumbreDisplay(24);
+        minutos = new NumbreDisplay(60);
+        updateAlmacen5c();
     }
     
     /**
@@ -30,32 +29,60 @@ public class ClockDisplay
      */
     public ClockDisplay( int newHoras, int newMinutos)
     {
-        horas = new NumbreDisplay(23);
-        minutos = new NumbreDisplay(59);
+        horas = new NumbreDisplay(24);
+        minutos = new NumbreDisplay(60);
         horas.setValue(newHoras);
         minutos.setValue(newMinutos);
-          
-        
-                
+        updateAlmacen5c();
     }
     
     public void setTime(int hNew, int mNew)
     {
-        horas = new NumbreDisplay (hNew);
-        minutos = new NumbreDisplay (mNew);
-        
+        horas.setValue(hNew);
+        minutos.setValue(mNew);
+        updateAlmacen5c();
     }
     
     public String getTime()
     {
-       almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue();
-       return almacen5c;
+       return almacen5c; 
     }
 
     public void timeTick()
     {
         minutos. increment();
+        if(minutos.getValue() == 0)
+        {
+            horas.increment();
+            
+        }
     }
+    
+    private void updateAlmacen5c()
+    {
+        if(horas.getValue() > 12)
+       {
+           int nuevasHoras;
+           nuevasHoras = horas.getValue() - 12;
+           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + "pm"; 
+       }
+       else if(horas.getValue() == 12)
+       {
+           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + "pm";
+       }
+       else if(horas.getValue() == 0)
+       {
+           int nuevasHoras;
+           nuevasHoras = 12;
+           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + "am";
+       }
+       else
+       {
+           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + "am"; 
+       }
+    }
+    
+   
 
 }         
    
