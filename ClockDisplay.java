@@ -14,11 +14,13 @@ public class ClockDisplay
      // Objetoque nos da las horas y los minuto separados por dos puntos.
     private String almacen5c;
     
-    private int mes;
+    private NumbreDisplay mes;
     
-    private int dia;
+    private NumbreDisplay dia;
     
-    private int año;
+    private NumbreDisplay año;
+    
+    private String newFecha;
     
     /**
      * Constructor 1.
@@ -27,7 +29,11 @@ public class ClockDisplay
     {
         horas = new NumbreDisplay(24);
         minutos = new NumbreDisplay(60);
+        dia = new NumbreDisplay(31);
+        mes = new NumbreDisplay(13);
+        año = new NumbreDisplay(100);
         updateAlmacen5c();
+        calendario();
         
     }
     
@@ -40,55 +46,30 @@ public class ClockDisplay
         minutos = new NumbreDisplay(60);
         horas.setValue(newHoras);
         minutos.setValue(newMinutos);
-     
-        if(adia > 0 && adia <=30)
-        {
-            dia = adia;
-        }
-        else
-        {
-            System.out.println("El dato debe de estar entre 0 y 30");
-        }
-        if(ames >= 1 && ames <=12)
-        {
-            mes = ames;
-        }
-        else
-        {
-            System.out.println("El dato debe de estar entre 1 y 12");
-        }
-        año = aaño;
+        dia = new NumbreDisplay(31);
+        mes = new NumbreDisplay(13);
+        año = new NumbreDisplay(100);
+        dia.setValue(adia);
+        mes.setValue(ames);
+        año.setValue(aaño);
         updateAlmacen5c();
+        calendario();
     }
     
-    public void setTime(int hNew, int mNew, int adia, int ames, int aaño)
+    public void setTime(int hNew, int mNew, int bdia, int bmes, int baño)
     {
         horas.setValue(hNew);
         minutos.setValue(mNew);
-        
-        if(adia > 0 && adia <=30)
-        {
-            dia = adia;
-        }
-        else
-        {
-            System.out.println("El dato debe de estar entre 0 y 30");
-        }
-        if(ames >= 1 && ames <= 12)
-        {
-            mes = ames;
-        }
-        else
-        {
-            System.out.println("El dato debe de estar entre 1 y 12");
-        }
-        año = aaño;
+        dia.setValue(bdia);
+        mes.setValue(bmes);
+        año.setValue(baño);
         updateAlmacen5c();
+        calendario();
     }
     
     public String getTime()
     {
-       return almacen5c; 
+        return almacen5c + " " + newFecha;
     }
 
     public void timeTick()
@@ -97,20 +78,27 @@ public class ClockDisplay
         if(minutos.getValue() == 0)
         {
             horas.increment();
-            dia = dia + 1;
-            if(dia > 30)
-            {
-                mes = mes + 1;
-                dia = 1;
-            }
-            else
-                if(mes > 12)
-                {
-                    año = año + 1;
-                    mes = 1;
-                }
             
+            if(horas.getValue() == 00)
+            {
+                dia.increment();
+            
+                if(dia.getValue() == 00)
+                {
+                    dia.increment();
+                    mes.increment();
+                    
+                    if(mes.getValue() == 00)
+                    {
+                        mes.increment();
+                        año.increment();
+                    }
+                }
+            }
+            updateAlmacen5c();
+            calendario();
         }
+        
     }
     
     private void updateAlmacen5c()
@@ -119,22 +107,34 @@ public class ClockDisplay
        {
            int nuevasHoras;
            nuevasHoras = horas.getValue() - 12;
-           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " pm " + dia + "/" + mes + "/" + año; 
+           if((horas.getValue() - 12) < 10)
+           {
+               almacen5c = "0" + nuevasHoras + ":" + minutos.getDisplayValue() + " pm ";
+           }
+           else
+           {
+               almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " pm ";
+           }
        }
        else if(horas.getValue() == 12)
        {
-           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm " + dia + "/" + mes + "/" + año;
+           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm ";
        }
        else if(horas.getValue() == 0)
        {
            int nuevasHoras;
            nuevasHoras = 12;
-           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " am " + dia + "/" + mes + "/" + año;
+           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " am ";
        }
        else
        {
-           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " am " + dia + "/" + mes + "/" + año; 
+            almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm ";
        }
+    }
+    
+    private void calendario()
+    {
+        newFecha = dia.getDisplayValue() + "/" + mes.getDisplayValue() + "/" + año.getDisplayValue();
     }
     
    
