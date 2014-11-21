@@ -20,8 +20,6 @@ public class ClockDisplay
     
     private NumbreDisplay año;
     
-    private String newFecha;
-    
     /**
      * Constructor 1.
      */
@@ -29,12 +27,17 @@ public class ClockDisplay
     {
         horas = new NumbreDisplay(24);
         minutos = new NumbreDisplay(60);
+        
         dia = new NumbreDisplay(31);
         mes = new NumbreDisplay(13);
         año = new NumbreDisplay(100);
-        updateAlmacen5c();
-        calendario();
         
+        //atrivutos inicializados
+        dia.setValue(1);
+        mes.setValue(1);
+        año.setValue(1);
+        
+        updateAlmacen5c();
     }
     
     /**
@@ -44,16 +47,19 @@ public class ClockDisplay
     {
         horas = new NumbreDisplay(24);
         minutos = new NumbreDisplay(60);
+        
         horas.setValue(newHoras);
         minutos.setValue(newMinutos);
+        
         dia = new NumbreDisplay(31);
         mes = new NumbreDisplay(13);
         año = new NumbreDisplay(100);
+        
         dia.setValue(adia);
         mes.setValue(ames);
         año.setValue(aaño);
+        
         updateAlmacen5c();
-        calendario();
     }
     
     public void setTime(int hNew, int mNew, int bdia, int bmes, int baño)
@@ -64,12 +70,11 @@ public class ClockDisplay
         mes.setValue(bmes);
         año.setValue(baño);
         updateAlmacen5c();
-        calendario();
     }
     
     public String getTime()
     {
-        return almacen5c + " " + newFecha;
+        return almacen5c;
     }
 
     public void timeTick()
@@ -79,16 +84,16 @@ public class ClockDisplay
         {
             horas.increment();
             
-            if(horas.getValue() == 00)
+            if(horas.getValue() == 0)
             {
                 dia.increment();
             
-                if(dia.getValue() == 00)
+                if(dia.getValue() == 0)
                 {
                     dia.increment();
                     mes.increment();
                     
-                    if(mes.getValue() == 00)
+                    if(mes.getValue() == 0)
                     {
                         mes.increment();
                         año.increment();
@@ -96,49 +101,45 @@ public class ClockDisplay
                 }
             }
             updateAlmacen5c();
-            calendario();
         }
         
     }
     
     private void updateAlmacen5c()
-    {
+    { 
+       String fechaNew;
+       fechaNew = dia.getDisplayValue() + "/" + mes.getDisplayValue() + "/" + año.getDisplayValue();
+       
        if(horas.getValue() > 12)
        {
            int nuevasHoras;
            nuevasHoras = horas.getValue() - 12;
+           
            if((horas.getValue() - 12) < 10)
            {
-               almacen5c = "0" + nuevasHoras + ":" + minutos.getDisplayValue() + " pm ";
+               almacen5c = "0" + nuevasHoras + ":" + minutos.getDisplayValue() + " pm " + fechaNew;
            }
            else
            {
-               almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " pm ";
+               almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " pm " + fechaNew;
            }
+           
        }
        else if(horas.getValue() == 12)
        {
-           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm ";
+           almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm " + fechaNew;
        }
        else if(horas.getValue() == 0)
        {
            int nuevasHoras;
            nuevasHoras = 12;
-           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " am ";
+           almacen5c = nuevasHoras + ":" + minutos.getDisplayValue() + " am " + fechaNew;
        }
        else
        {
-            almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm ";
+            almacen5c = horas.getDisplayValue() + ":" + minutos.getDisplayValue() + " pm " + fechaNew;
        }
     }
-    
-    private void calendario()
-    {
-        newFecha = dia.getDisplayValue() + "/" + mes.getDisplayValue() + "/" + año.getDisplayValue();
-    }
-    
-   
-
 }         
    
     
